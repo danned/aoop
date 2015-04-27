@@ -14,6 +14,5 @@ public class Start
     public static void main(String [] args)
     {
         ImagePresenter p = new ImagePresenter();
-        p.addSlide("Schleden tröja", "schledenn.png");
     }
 }
