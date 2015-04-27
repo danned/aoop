@@ -1,13 +1,16 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package presenter;
 
 
 import java.awt.event.ActionEvent;
-import java.util.LinkedList;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
+import javax.swing.JComponent;
+import javax.swing.JLabel;
+import presenter.Presenter;
 
 /**
  *
@@ -15,19 +18,22 @@ import java.util.LinkedList;
  */
 public class ImagePresenter extends Presenter
 {
-    LinkedList<SlideNode> list;
+    ArrayList<SlideNode> list;
     public int curSlide;
-    
+    JLabel picLabel;
+   
     /**
      * Constructor. Modifies text on buttons and intializes datastructure
      * needed for imagepresenter
      */
     public ImagePresenter()
     {
-        this.setEastText("Next");
-        this.setWestText("Previous");
+        //PresenterFrame frame = new PresenterFrame(this);
+        picLabel            = new JLabel();
+        eastButton.setText("Next");
+        westButton.setText("Prev");
         curSlide = 0;
-        list = new LinkedList();
+        list = new ArrayList<>();
         
         list.add(new SlideNode("start.png", "This is the slideshow program!"));
         showNode(list.get(0));
@@ -106,7 +112,7 @@ public class ImagePresenter extends Presenter
     private void showNode(SlideNode s)
     {
         showImage(s.getImg());
-        showText(s.getText());
+       // showText(s.getText());
     }
     
     /**
@@ -117,5 +123,24 @@ public class ImagePresenter extends Presenter
     public void addSlide(String text, String filename)
     {
         list.add(new SlideNode(filename, text));
+    }
+    /**
+     * Shows image filename. looks for file in working directory
+     * @param filename filename of image
+     */
+    public void showImage(String filename)
+    {
+        try 
+        {
+            BufferedImage myPicture = ImageIO.read(new File("./"+filename));
+            picLabel.setIcon(new ImageIcon(myPicture));
+        } catch (IOException e) {
+           
+        }
+    }
+
+    @Override
+    public JComponent createCenterComponent() {
+        return picLabel;
     }
 }

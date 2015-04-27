@@ -12,8 +12,8 @@ package presenter;
  * @author Daniel and Erik
  */
 public class SlideNode {
-    private String picName;
-    private String text;
+    private final String picName;
+    private final String text;
     
     
     /**
