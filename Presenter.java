@@ -93,7 +93,10 @@ public abstract class Presenter extends JFrame
         
         info = new JTextArea("Moving West to COORD");
         info.setBorder(BorderFactory.createEtchedBorder());
-        
+        info.setLineWrap(true);
+        info.setWrapStyleWord(true);
+    
+ 
         mainPanel.setBorder(BorderFactory.createEtchedBorder());
                 
         northPanel.add(northButton);
