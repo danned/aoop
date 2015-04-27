@@ -14,7 +14,7 @@ import javax.swing.JTextArea;
 
 /**
  *
- * @author Daniel
+ * @author Daniel and Erik
  */
 public class PresenterFrame extends JFrame{
     

@@ -5,7 +5,7 @@ import javax.swing.JComponent;
 
 /**
  *
- * @author Daniel
+ * @author Daniel and ERik
  */
 public class FifteenPuzzle extends Presenter{
     //private ArrayList <Tile> tiles;

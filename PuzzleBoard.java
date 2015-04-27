@@ -12,7 +12,7 @@ import javax.swing.JComponent;
 
 /**
  *
- * @author Daniel
+ * @author Daniel and Erik
  */
 public class PuzzleBoard extends JComponent {
     //public Tile[][] tiles;

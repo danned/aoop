@@ -2,12 +2,10 @@ package presenter;
 
 import java.awt.Dimension;
 import java.awt.Graphics2D;
-import java.awt.Point;
-import javax.swing.JLabel;
 
 /**
  *
- * @author Daniel
+ * @author Daniel and Erik
  */
 public class Tile{
     private final int value;
