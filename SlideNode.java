@@ -15,20 +15,32 @@ public class SlideNode {
     private String picName;
     private String text;
     
-    public SlideNode()
-    {
-        picName = null;
-        text = null;
-    }
+    
+    /**
+     * constructor. Takes name of image and text as strings. 
+     * @param image Filename of image. Image should be located in java working 
+     *              dir
+     * @param text String of text
+     */
     public SlideNode(String image, String text)
     {
         this.text = text;
         this.picName = image;
     }
+    
+    /**
+     * Getter of image name
+     * @return name of picture
+     */
     public String getImg()
     {
         return picName;
     }
+    
+    /**
+     * getter of text
+     * @return text
+     */
     public String getText()
     {
         return text;
