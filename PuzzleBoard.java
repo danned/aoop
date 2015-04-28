@@ -8,7 +8,11 @@ package presenter;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.util.Collections;
+import java.util.ArrayList;
 import javax.swing.JComponent;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -21,32 +25,27 @@ public class PuzzleBoard extends JComponent {
     int y;
     public PuzzleBoard()
     {
-        /*tiles = new Tile[16];
-        for(int i = 0; i < 16;i++)
-        {
-            tiles[i] = (new Tile(i%4, (i)/4 , (i)));
-        }*/
+        ArrayList<Tile> tmp = new ArrayList<>();
+        for(int i = 0; i<16;i++){ tmp.add(new Tile(0,0,i)); }
+        //tmp.add(new Tile(0,0,0));
+        Collections.shuffle(tmp);
         tiles = new Tile[4][4];
-        for(int y = 1; y< 5; y++)
-        {
-            for(int x = 1; x < 5; x++)
+
+        for(int i = 0;i<tmp.size();i++){
+            tiles[i/4][i%4] = tmp.get(i);
+            tiles[i/4][i%4].setY(i/4+1);
+            tiles[i/4][i%4].setX(i%4+1);
+            if( tiles[i/4][i%4].getValue() == 0)
             {
-                tiles[y-1][x-1] = new Tile(x,y, (x+(y-1)*4)-1 );
+                y = i/4;
+                x = i%4;
             }
-            //tiles[i] = (new Tile(i%4, (i)/4 , (i)));
         }
-        x = 0;
-        y = 0;
     }
+    @Override
     public void paintComponent(Graphics g){
         Graphics2D g2 = (Graphics2D) g;
-        //g2.drawRect(100, 100, 100, 100);
         g2.setColor(Color.black);
-        //g2.fillRect(200, 200, 200, 200);
-        /*for(Tile t:tiles)
-        {
-            t.draw(g2, this.getSize());
-        }*/
         for(Tile y[] : tiles)
         {
             for(Tile x: y)
@@ -68,6 +67,7 @@ public class PuzzleBoard extends JComponent {
             tiles[y][x+1] = tmp;
             x++;
             repaint();
+            checkWin();
             return true;
         }else
         {
@@ -85,6 +85,7 @@ public class PuzzleBoard extends JComponent {
             tiles[y][x-1] = tmp;
             x--;
             repaint();
+            checkWin();
             return true;
         }else
         {
@@ -103,6 +104,7 @@ public class PuzzleBoard extends JComponent {
             tiles[y+1][x] = tmp;
             y++;
             repaint();
+            checkWin();
             return true;
         }else
         {
@@ -120,10 +122,25 @@ public class PuzzleBoard extends JComponent {
             tiles[y-1][x] = tmp;
             y--;
             repaint();
+            checkWin();
             return true;
         }else
         {
             return false;
+        }
+    }
+    
+    private void checkWin()
+    {
+        boolean win = true;
+        for(int i = 0;i<15 && win;i++){
+            if( tiles[i/4][i%4].getValue() != i+1) win = false;  
+        }
+        
+        if(win)
+        {
+           JOptionPane.showMessageDialog(new JFrame(),
+                "You Win!"); 
         }
     }
 }
