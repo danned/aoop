@@ -82,6 +82,14 @@ public class Ball {
      }
    }
 
+    //Compares one ball with another Ball to see of it's close, returns true if so
+    boolean isCloseTo(Ball other){
+        return  this.x + 2 > other.x &&
+                this.x - 2 < other.x &&
+                this.y + 2 > other.y &&
+                this.y - 2 < other.y;
+    }
+
     
     
   //Display this ball as a circle filled with its color
@@ -105,4 +113,3 @@ public class Ball {
   //All balls are this size (see display)
   private static Dimension ballDimensions = new Dimension(10,10);
 }
-
