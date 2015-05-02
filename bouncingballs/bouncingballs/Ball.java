@@ -82,15 +82,30 @@ public class Ball {
      }
    }
 
+
     //Compares one ball with another Ball to see of it's close, returns true if so
     boolean isCloseTo(Ball other){
-        return  this.x + 2 > other.x &&
-                this.x - 2 < other.x &&
-                this.y + 2 > other.y &&
-                this.y - 2 < other.y;
+        int d = 10; //distance (krockar sellan om det er legre en 10)
+        boolean notSame = this != other; //!lappgubbe
+        boolean isClose = this.x + d > other.x &&
+                        this.x - d < other.x &&
+                        this.y + d > other.y &&
+                        this.y - d < other.y;
+        return  notSame && isClose;
     }
-
     
+    //Getters
+    int getX(){ return x; }
+    int getY(){ return y; }
+    int getVx(){ return vx; }
+    int getVy(){ return vy; }
+    Color getColor(){ return color; }
+
+    //Setters
+    Ball setVx(int newVx){ vx = newVx; return this; }
+    Ball setVy(int newVy){ vy = newVy; return this; }
+    Ball setColor(Color newColor){ color = newColor; return this; }
+
     
   //Display this ball as a circle filled with its color
   void display(Graphics g)
@@ -101,14 +116,15 @@ public class Ball {
 
 
 
+
   public String toString ()
   {return "Ball[x="+x+",y="+y+",vx="+vx+",vy="+vy+",color="+color+"]";}
   
   
     
   //Fields 
-  private       int   x, y, vx, vy;
-  private final Color color;
+  private int   x, y, vx, vy;
+  private Color color;
   
   //All balls are this size (see display)
   private static Dimension ballDimensions = new Dimension(10,10);

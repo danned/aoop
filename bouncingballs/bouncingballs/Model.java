@@ -94,16 +94,25 @@ public class Model
       return;
       
     cycleCount++;
-    for (int i=0; i<used; i++) {
+    for (int i = 0; i < used; i++){
       Ball one = balls[i];
       for (int j = 0; j < used; j++) {
         if(balls[i].isCloseTo(balls[j])){
           //Do fusing; fusing means the average of their velocities and color.
-          System.out.println(balls[i] + "\nIS CLOSE TO\n" + balls[j] + "\n\n");
+          int newVx = (balls[i].getVx() + balls[j].getVx()) / 2;
+          int newVy = (balls[i].getVy() + balls[j].getVy()) / 2;
+          Color c1 = balls[i].getColor();
+          Color c2 = balls[j].getColor();
+          float[] compArray = new float[3];
+          int newRed = (c1.getRed() + c2.getRed()) / 2;
+          int newGreen = (c1.getGreen() + c2.getGreen()) / 2;
+          int newBlue = (c1.getBlue() + c2.getBlue()) / 2;
+          Color newColor = new Color(newRed, newGreen, newBlue);
+          balls[i].setVx(newVx).setVy(newVy).setColor(newColor);
+          balls[j].setVx(newVx).setVy(newVy).setColor(newColor);
         }
       }
       one.update(view.getEnclosingBox());
-
     }
       
     //System.out.println("State: " + this +"\n");
